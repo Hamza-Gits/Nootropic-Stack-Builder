@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nootropics — The Stack Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #0f0f18;
+    --bg3: #151520;
+    --bg4: #1a1a28;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e8e6f0;
+    --text2: #9490a8;
+    --text3: #5a576a;
+    --accent: #7c6af5;
+    --accent2: #5e4fe0;
+    --accent-glow: rgba(124,106,245,0.15);
+    --green: #2dd4a0;
+    --green-bg: rgba(45,212,160,0.08);
+    --amber: #f5a623;
+    --amber-bg: rgba(245,166,35,0.08);
+    --red: #f5606a;
+    --red-bg: rgba(245,96,106,0.08);
+    --blue: #5ab4f5;
+    --blue-bg: rgba(90,180,245,0.08);
+    --purple-bg: rgba(124,106,245,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── LAYOUT ── */
+  .page { position: relative; z-index: 1; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-logo .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text2);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.15s;
+    font-weight: 400;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--bg3); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse at center, rgba(124,106,245,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--purple-bg);
+    border: 1px solid rgba(124,106,245,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero p {
+    font-size: 17px;
+    color: var(--text2);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent);
+    color: white;
+    font-size: 14px; font-weight: 500;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none; cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    color: var(--text2);
+    font-size: 14px; font-weight: 400;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid var(--border2); cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--border2); background: var(--bg3); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin: 60px 0;
+    overflow: hidden;
+  }
+  .stat {
+    background: var(--bg2);
+    padding: 22px 24px;
+  }
+  .stat-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .stat-label { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+  /* ── SECTION ── */
+  section { padding: 60px 0; }
+  .section-header { margin-bottom: 36px; }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .section-sub { font-size: 14px; color: var(--text2); margin-top: 6px; }
+
+  /* ── TIER LABEL ── */
+  .tier-row { margin-bottom: 40px; }
+  .tier-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .tier-pill {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .tier-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ── COMPOUND CARDS ── */
+  .compound-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+  .compound-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .compound-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .compound-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .compound-card.selected {
+    border-color: var(--accent);
+    background: var(--bg3);
+  }
+  .compound-card.selected::before { opacity: 1; background: var(--accent-glow); }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .card-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; color: var(--text); }
+  .card-aka { font-size: 11px; color: var(--text3); margin-top: 2px; font-family: 'DM Mono', monospace; }
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-family: 'DM Mono', monospace;
+  }
+  .badge-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(45,212,160,0.2); }
+  .badge-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(245,166,35,0.2); }
+  .badge-red { background: var(--red-bg); color: var(--red); border: 1px solid rgba(245,96,106,0.2); }
+  .badge-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(90,180,245,0.2); }
+  .badge-purple { background: var(--purple-bg); color: var(--accent); border: 1px solid rgba(124,106,245,0.2); }
+
+  /* effect bars */
+  .effect-bars { margin: 12px 0 14px; }
+  .ebar { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .ebar-label { font-size: 10px; color: var(--text3); width: 85px; flex-shrink: 0; font-family: 'DM Mono', monospace; }
+  .ebar-track { flex: 1; height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .ebar-fill { height: 100%; border-radius: 2px; transition: width 0.6s ease; }
+  .ebar-val { font-size: 10px; color: var(--text3); width: 28px; text-align: right; font-family: 'DM Mono', monospace; }
+
+  .card-toggle {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 11px; color: var(--text3);
+    cursor: pointer;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    user-select: none;
+  }
+  .card-toggle:hover { color: var(--text2); }
+  .card-detail { display: none; padding-top: 14px; }
+  .card-detail.open { display: block; }
+  .detail-row { margin-bottom: 10px; }
+  .detail-key { font-size: 11px; color: var(--text3); font-family: 'DM Mono', monospace; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .detail-val { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .tag {
+    font-size: 11px; padding: 3px 8px; border-radius: 20px;
+    background: var(--bg4); color: var(--text2);
+    border: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+  }
+  .tag.warn { background: var(--amber-bg); color: var(--amber); border-color: rgba(245,166,35,0.2); }
+  .tag.danger { background: var(--red-bg); color: var(--red); border-color: rgba(245,96,106,0.2); }
+
+  /* add button */
+  .add-btn {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 10px;
+  }
+  .add-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+  .add-btn.added { background: var(--accent); color: white; border-color: var(--accent); }
+
+  /* ── STACK BUILDER ── */
+  #stack-builder {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 60px;
+  }
+  .stack-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+  .stack-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--text); }
+  .stack-subtitle { font-size: 13px; color: var(--text3); margin-top: 3px; }
+  #clear-stack {
+    font-size: 12px; color: var(--text3); background: none; border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s;
+  }
+  #clear-stack:hover { color: var(--red); border-color: var(--red-bg); }
+  #stack-empty {
+    text-align: center; padding: 40px 20px;
+    color: var(--text3); font-size: 13px;
+  }
+  .stack-empty-icon { font-size: 32px; margin-bottom: 8px; opacity: 0.3; }
+  #stack-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .chip {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--bg4); border: 1px solid var(--border2);
+    border-radius: 20px; padding: 6px 12px;
+    font-size: 13px; color: var(--text);
+  }
+  .chip-remove { background: none; border: none; color: var(--text3); cursor: pointer; font-size: 14px; line-height: 1; padding: 0; display: flex; }
+  .chip-remove:hover { color: var(--red); }
+
+  /* stack analysis */
+  #stack-analysis { display: none; }
+  #stack-analysis.show { display: block; }
+  .analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 20px; }
+  .analysis-card {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 16px;
+  }
+  .analysis-card-label { font-size: 11px; color: var(--text3); font-family: 'DM Mono', monospace; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .analysis-bar-wrap { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
+  .analysis-bar { height: 100%; border-radius: 3px; transition: width 0.8s ease; }
+  .analysis-card-val { font-size: 20px; font-weight: 600; font-family: 'Syne', sans-serif; }
+
+  .stack-risks { margin-bottom: 20px; }
+  .risk-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 10px; }
+  .risk-list { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .synergy-box {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 16px;
+    margin-bottom: 16px;
+  }
+  .synergy-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .synergy-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .synergy-body { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* ── IQ / RESEARCH SECTION ── */
+  .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-bottom: 40px; }
+  .research-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 22px;
+  }
+  .rc-icon { font-size: 24px; margin-bottom: 14px; }
+  .rc-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .rc-body { font-size: 13px; color: var(--text2); line-height: 1.65; }
+  .rc-metric { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700; color: var(--accent); margin: 12px 0 4px; }
+  .rc-metric-label { font-size: 12px; color: var(--text3); }
+
+  /* ── COMPARE TABLE ── */
+  .compare-wrap { overflow-x: auto; margin-bottom: 40px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { border-bottom: 1px solid var(--border2); }
+  th { text-align: left; padding: 10px 14px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 400; }
+  td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; }
+  tbody tr:hover td { background: var(--bg3); }
+  td:first-child { color: var(--text); font-weight: 500; }
+  .dot-green { color: var(--green); }
+  .dot-amber { color: var(--amber); }
+  .dot-red { color: var(--red); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    margin-top: 40px;
+  }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--text2); }
+  .footer-note { font-size: 12px; color: var(--text3); max-width: 500px; line-height: 1.5; }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer {
+    background: var(--amber-bg); border: 1px solid rgba(245,166,35,0.2); border-radius: 10px;
+    padding: 14px 18px; margin-bottom: 40px;
+    font-size: 13px; color: var(--amber); line-height: 1.6;
+  }
+
+  /* ── SCROLL ANIM ── */
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* ── PREMADE STACKS ── */
+  .intensity-dial {
+    position: relative;
+    margin: 0 auto 40px;
+    max-width: 700px;
+  }
+  .dial-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    position: relative;
+    margin: 0 20px 28px;
+  }
+  .dial-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s ease, background 0.4s ease;
+    position: absolute; top: 0; left: 0;
+  }
+  .dial-steps {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: -8px; left: -4px; right: -4px;
+  }
+  .dial-step {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border2);
+    background: var(--bg);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .dial-step.active {
+    border-color: var(--step-color, var(--accent));
+    background: var(--step-color, var(--accent));
+    box-shadow: 0 0 12px var(--step-color, var(--accent));
+  }
+  .dial-step-label {
+    position: absolute;
+    top: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--text3);
+    white-space: nowrap;
+    font-family: 'DM Mono', monospace;
+    pointer-events: none;
+  }
+  .dial-step.active .dial-step-label { color: var(--text2); }
+  .dial-labels {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--text3);
+    font-family: 'DM Mono', monospace;
+    margin-top: 4px;
+  }
+  .preset-panel {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .preset-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .preset-level-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 4px;
+    letter-spacing: 0.08em;
+  }
+  .preset-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .preset-tagline {
+    font-size: 13px;
+    color: var(--text2);
+    max-width: 460px;
+    line-height: 1.6;
+  }
+  .preset-meta {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+  }
+  .preset-risk-badge {
+    font-size: 12px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+  }
+  .preset-load-btn {
+    font-size: 13px; font-weight: 500;
+    padding: 9px 18px; border-radius: 8px;
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .preset-load-btn:hover { transform: translateY(-1px); }
+  .preset-body { padding: 22px 28px 26px; }
+  .preset-compounds-title {
+    font-size: 11px; color: var(--text3);
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    margin-bottom: 12px;
+  }
+  .preset-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .preset-chip {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--bg4); border: 1px solid var(--border2);
+    border-radius: 20px; padding: 6px 12px;
+    font-size: 12px; color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .preset-chip-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .preset-effects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px; margin-bottom: 20px;
+  }
+  .preset-effect-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px;
+  }
+  .pec-label { font-size: 10px; color: var(--text3); font-family: 'DM Mono', monospace; margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .pec-bar-bg { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
+  .pec-bar-fill { height: 100%; border-radius: 2px; transition: width 0.7s ease; }
+  .pec-val { font-size: 18px; font-weight: 600; font-family: 'Syne', sans-serif; }
+  .preset-risks-title { font-size: 11px; color: var(--text3); font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+  .preset-warnings { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .pw-row { font-size: 13px; color: var(--text2); line-height: 1.7; display: flex; gap: 8px; }
+  .pw-row + .pw-row { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border); }
+  .pw-bullet { flex-shrink: 0; margin-top: 2px; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero { padding: 60px 0 50px; }
+    .hero h1 { font-size: 36px; }
+    #stack-builder { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><span class="dot"></span> NeuroStack</div>
+    <div class="nav-links">
+      <a href="#compounds">Compounds</a>
+      <a href="#premade">Premade Stacks</a>
+      <a href="#stack-builder-section">Stack Builder</a>
+      <a href="#research">Research</a>
+      <a href="#compare">Compare</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-badge">⬡ Cognitive Enhancement Reference</div>
+    <h1>The Nootropics<br><em>Field Guide</em></h1>
+    <p>Everything you need to know about cognitive enhancers — from freely available supplements to prescription compounds. Build your own stack and see the risk profile in real time.</p>
+    <div class="hero-actions">
+      <a href="#stack-builder" class="btn-primary">Build Your Stack →</a>
+      <a href="#compounds" class="btn-ghost">Browse Compounds</a>
+    </div>
+
+    <div class="stats-bar fade-up">
+      <div class="stat"><div class="stat-val">14</div><div class="stat-label">Compounds catalogued</div></div>
+      <div class="stat"><div class="stat-val">4</div><div class="stat-label">Restriction tiers</div></div>
+      <div class="stat"><div class="stat-val">0–4pt</div><div class="stat-label">Real IQ impact (healthy)</div></div>
+      <div class="stat"><div class="stat-val">+60%</div><div class="stat-label">Sustained focus gain</div></div>
+    </div>
+
+    <div class="disclaimer">
+      ⚠ For informational purposes only. Nothing here is medical advice. Always consult a doctor before using any substance. Some compounds listed are prescription-only or controlled in the UK.
+    </div>
+  </div>
+</section>
+
+<!-- COMPOUNDS -->
+<section id="compounds">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">// 01 — Compounds</div>
+      <div class="section-title">All nootropics, ranked by tier</div>
+      <div class="section-sub">Click any card to expand. Click "Add to stack" to include it in your stack.</div>
+    </div>
+
+    <div id="compound-list"></div>
+  </div>
+</section>
+
+<!-- STACK BUILDER -->
+<section id="stack-builder-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">// 02 — Stack Builder</div>
+      <div class="section-title">Build your stack</div>
+      <div class="section-sub">Add compounds from the list above. See combined benefits, risks, and synergies.</div>
+    </div>
+
+    <div id="stack-builder" class="fade-up">
+      <div class="stack-header">
+        <div>
+          <div class="stack-title">My Stack <span id="stack-count" style="font-size:13px;color:var(--text3);font-weight:400;font-family:'DM Mono',monospace;">(0 compounds)</span></div>
+          <div class="stack-subtitle">Select compounds above to build your personalised stack</div>
+        </div>
+        <button id="clear-stack" onclick="clearStack()">Clear all</button>
+      </div>
+
+      <div id="stack-empty">
+        <div class="stack-empty-icon">◈</div>
+        <div>No compounds added yet.</div>
+        <div style="margin-top:4px;font-size:12px;">Browse the list above and click "Add to stack"</div>
+      </div>
+
+      <div id="stack-chips"></div>
+      <div id="stack-analysis"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMADE STACKS -->
+<section id="premade">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">// 03 — Premade Stacks</div>
+      <div class="section-title">Choose your intensity</div>
+      <div class="section-sub">Five premade protocols from gentle to extreme. Select a level, see the full stack, then load it into the builder.</div>
+    </div>
+
+    <div class="intensity-dial fade-up">
+      <div class="dial-track">
+        <div class="dial-fill" id="dial-fill"></div>
+        <div class="dial-steps" id="dial-steps"></div>
+      </div>
+      <div class="dial-labels">
+        <span>Gentle</span>
+        <span>Extreme</span>
+      </div>
+    </div>
+
+    <div class="preset-panel fade-up" id="preset-panel"></div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">// 04 — Research</div>
+      <div class="section-title">What the science actually shows</div>
+    </div>
+    <div class="research-grid fade-up">
+      <div class="research-card">
+        <div class="rc-icon">🧠</div>
+        <div class="rc-title">IQ — the honest picture</div>
+        <div class="rc-metric">0–4 pts</div>
+        <div class="rc-metric-label">IQ gain on healthy individuals</div>
+        <div class="rc-body" style="margin-top:12px;">Nootropics don't raise your intelligence ceiling. They remove drag — fatigue, distraction, and underperformance. IQ tests measure fluid intelligence which isn't pharmacologically moveable in healthy people. Sleep-deprived or cognitively depleted individuals see larger gains.</div>
+      </div>
+      <div class="research-card">
+        <div class="rc-icon">📚</div>
+        <div class="rc-title">Memory encoding vs retention</div>
+        <div class="rc-metric">+15–25%</div>
+        <div class="rc-metric-label">Learning speed on new material</div>
+        <div class="rc-body" style="margin-top:12px;">Encoding new information (while awake) improves significantly. The critical trap: modafinil's 12–15hr half-life blunts sleep. Since memory consolidates into long-term storage during deep sleep, studying on modafinil and sleeping poorly can mean poor 1-week recall despite sharp same-day encoding.</div>
+      </div>
+      <div class="research-card">
+        <div class="rc-icon">⏱</div>
+        <div class="rc-title">The real edge: time-on-task</div>
+        <div class="rc-metric">+40–60%</div>
+        <div class="rc-metric-label">Sustained focus duration</div>
+        <div class="rc-body" style="margin-top:12px;">The biggest real-world advantage isn't smarter thinking — it's 5–6 focused hours vs 90 distracted minutes. Over weeks, the output gap compounds dramatically even if your IQ number barely moved. This is the Limitless effect in reality.</div>
+      </div>
+      <div class="research-card">
+        <div class="rc-icon">⚗️</div>
+        <div class="rc-title">Neuroplasticity compounds</div>
+        <div class="rc-metric">4–12 wk</div>
+        <div class="rc-metric-label">Time to structural effect</div>
+        <div class="rc-body" style="margin-top:12px;">Lion's Mane and Bacopa work differently — they slowly increase NGF/BDNF and memory-encoding efficiency over weeks. No acute buzz, but genuinely alter baseline cognition over time. These are the closest thing to actually raising your ceiling.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE TABLE -->
+<section id="compare">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">// 05 — Compare</div>
+      <div class="section-title">Quick comparison</div>
+    </div>
+    <div class="compare-wrap fade-up">
+      <table>
+        <thead>
+          <tr>
+            <th>Compound</th>
+            <th>Onset</th>
+            <th>Duration</th>
+            <th>Legal (UK)</th>
+            <th>Dependency risk</th>
+            <th>Best for</th>
+          </tr>
+        </thead>
+        <tbody id="compare-table"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">NeuroStack</div>
+      <div class="footer-note">This guide is for educational purposes only. Nothing here constitutes medical advice. Always research independently and consult a qualified healthcare professional before using any supplement or drug.</div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- end .page -->
+
+<script>
+const COMPOUNDS = [
+  {
+    id: 'lions-mane',
+    name: "Lion's Mane",
+    aka: 'Hericium erinaceus',
+    badge: 'Natural', badgeClass: 'badge-green',
+    tier: 'otc', tierLabel: 'Freely available',
+    effects: { Focus: 55, Memory: 65, Energy: 40, Mood: 50 },
+    mechanism: "Stimulates Nerve Growth Factor (NGF) — promotes growth and repair of neurons. Long-term neuroplasticity enhancement over weeks of consistent use.",
+    dosage: "500–1000mg daily. Best effects after 4–8 weeks. Stack with Bacopa for amplified neuroplasticity.",
+    onset: '4–8 weeks', duration: 'Chronic', legal: '✓ Legal', dependency: 'None',
+    bestFor: 'Long-term baseline',
+    sideEffects: ['Mild digestive upset', 'Possible allergy (rare)', 'Slow onset — patience required'],
+    sideClass: ['', '', ''],
+  },
+  {
+    id: 'alpha-gpc',
+    name: 'Alpha-GPC',
+    aka: 'Alpha-glycerophosphocholine',
+    badge: 'Natural', badgeClass: 'badge-green',
+    tier: 'otc', tierLabel: 'Freely available',
+    effects: { Focus: 65, Memory: 72, Energy: 55, Mood: 40 },
+    mechanism: "Precursor to acetylcholine — the primary neurotransmitter for memory and learning. Crosses the blood-brain barrier efficiently. Essential choline source for any racetam stack.",
+    dosage: "300–600mg, 1–2× daily. Always stack with racetams/modafinil to prevent headache.",
+    onset: '30–60 min', duration: '4–6 hr', legal: '✓ Legal', dependency: 'None',
+    bestFor: 'Memory + choline source',
+    sideEffects: ['Headache if overdosed', 'Brain fog at high doses', 'Mild nausea'],
+    sideClass: ['warn', '', ''],
+  },
+  {
+    id: 'bacopa',
+    name: 'Bacopa Monnieri',
+    aka: 'Brahmi',
+    badge: 'Adaptogen', badgeClass: 'badge-green',
+    tier: 'otc', tierLabel: 'Freely available',
+    effects: { Focus: 60, Memory: 78, Energy: 35, Mood: 65 },
+    mechanism: "Reduces anxiety, enhances memory consolidation. Modulates acetylcholine system, reduces cortisol. Considered the gold standard memory herb in Ayurvedic medicine.",
+    dosage: "300–450mg standardised extract (45% bacosides) daily. Takes 8–12 weeks for full effect. Take with food.",
+    onset: '8–12 weeks', duration: 'Chronic', legal: '✓ Legal', dependency: 'None',
+    bestFor: 'Memory consolidation',
+    sideEffects: ['Initial fatigue (take with food)', 'Digestive issues', 'Slows processing speed at first'],
+    sideClass: ['warn', '', 'warn'],
+  },
+  {
+    id: 'ltheanine-caffeine',
+    name: 'L-Theanine + Caffeine',
+    aka: 'The classic combo',
+    badge: 'Stack', badgeClass: 'badge-blue',
+    tier: 'otc', tierLabel: 'Freely available',
+    effects: { Focus: 75, Memory: 50, Energy: 82, Mood: 68 },
+    mechanism: "L-Theanine smooths caffeine's edge — clean alertness, reduced anxiety jitter, extended focus window. Genuinely synergistic: L-Theanine prevents the anxiety spike while preserving the focus benefit.",
+    dosage: "200mg L-Theanine : 100mg Caffeine. Best taken together. Avoid after 2pm.",
+    onset: '20–40 min', duration: '4–6 hr', legal: '✓ Legal', dependency: 'Caffeine: moderate',
+    bestFor: 'Clean daily focus',
+    sideEffects: ['Caffeine dependence', 'Sleep disruption if late', 'Tolerance builds over weeks'],
+    sideClass: ['warn', 'warn', 'warn'],
+  },
+  {
+    id: 'creatine',
+    name: 'Creatine Monohydrate',
+    aka: 'Yes, the gym one',
+    badge: 'Underrated', badgeClass: 'badge-blue',
+    tier: 'otc', tierLabel: 'Freely available',
+    effects: { Focus: 50, Memory: 58, Energy: 65, Mood: 45 },
+    mechanism: "Replenishes ATP in the brain — the brain's energy currency. Reduces mental fatigue, especially under sleep deprivation. Strongly underrated as a cognitive compound.",
+    dosage: "3–5g daily. No cycling needed. Cheap, well-researched, safe.",
+    onset: '1–2 weeks', duration: 'Chronic', legal: '✓ Legal', dependency: 'None',
+    bestFor: 'Mental stamina',
+    sideEffects: ['Water retention', 'Mild bloating initially', 'None severe'],
+    sideClass: ['', '', ''],
+  },
+  {
+    id: 'piracetam',
+    name: 'Piracetam / Aniracetam',
+    aka: 'Original racetams',
+    badge: 'Grey market', badgeClass: 'badge-purple',
+    tier: 'semi', tierLabel: 'Grey market',
+    effects: { Focus: 70, Memory: 76, Energy: 60, Mood: 55 },
+    mechanism: "Modulate AMPA receptors and increase acetylcholine turnover. First compounds ever called 'nootropics'. Piracetam is where the word was coined. Aniracetam adds anxiolytic effects.",
+    dosage: "Piracetam: 1.6–4.8g/day. Aniracetam: 750mg 2× daily (fat-soluble, take with food). ALWAYS stack with Alpha-GPC.",
+    onset: '1–2 hrs', duration: '5–8 hr', legal: 'Unregulated (UK)', dependency: 'Low',
+    bestFor: 'Memory + verbal fluency',
+    sideEffects: ['Headache without choline source', 'Irritability', 'Legal grey area outside UK'],
+    sideClass: ['warn', 'warn', 'danger'],
+  },
+  {
+    id: 'noopept',
+    name: 'Noopept',
+    aka: 'N-phenylacetyl-L-prolylglycine',
+    badge: 'Potent', badgeClass: 'badge-amber',
+    tier: 'semi', tierLabel: 'Grey market',
+    effects: { Focus: 80, Memory: 82, Energy: 65, Mood: 62 },
+    mechanism: "Stimulates BDNF and NGF — 1000× more potent than piracetam by weight. Peptide-based, crosses blood-brain barrier rapidly. Developed in Russia as a neuroprotective agent.",
+    dosage: "10–30mg daily split into 2 doses. Do NOT exceed 30mg. Cycle: 56 days on / 4 weeks off.",
+    onset: '15–30 min', duration: '4–6 hr', legal: 'Unregulated (UK)', dependency: 'Low',
+    bestFor: 'Memory + BDNF boost',
+    sideEffects: ['Irritability at high doses', 'Overstimulation', 'Headache', 'Brain fog if cycled wrong'],
+    sideClass: ['warn', 'warn', 'warn', 'warn'],
+  },
+  {
+    id: 'phenylpiracetam',
+    name: 'Phenylpiracetam',
+    aka: 'Racetam + stimulant hybrid',
+    badge: 'Stimulant', badgeClass: 'badge-amber',
+    tier: 'semi', tierLabel: 'Grey market',
+    effects: { Focus: 86, Memory: 70, Energy: 92, Mood: 65 },
+    mechanism: "Racetam with phenyl group added — gives stimulant-like properties. Increases dopamine and norepinephrine. Banned by WADA (athletics). One of the most intense freely-obtainable nootropics.",
+    dosage: "100–200mg, max 2–3× per week. Tolerance builds extremely fast — never take daily.",
+    onset: '30–60 min', duration: '5–8 hr', legal: 'Unregulated (UK)', dependency: 'Moderate',
+    bestFor: 'Acute performance',
+    sideEffects: ['Very fast tolerance', 'Crash', 'Irritability', 'Insomnia if late', 'WADA banned (sport)'],
+    sideClass: ['danger', 'warn', 'warn', 'warn', 'danger'],
+  },
+  {
+    id: 'modafinil',
+    name: 'Modafinil',
+    aka: 'Provigil / Modalert',
+    badge: 'Rx only', badgeClass: 'badge-red',
+    tier: 'rx', tierLabel: 'Prescription-only',
+    effects: { Focus: 92, Memory: 72, Energy: 96, Mood: 72 },
+    mechanism: "Promotes wakefulness via histamine and orexin systems. Inhibits dopamine reuptake weakly. The closest real-world NZT-48. Used by military, surgeons, air traffic controllers, traders.",
+    dosage: "100–200mg in the morning. Half-life 12–15 hours. Do NOT take after midday or sleep will be destroyed.",
+    onset: '30–60 min', duration: '12–15 hr', legal: 'Rx only (UK)', dependency: 'Low–moderate',
+    bestFor: 'Extended focus sessions',
+    sideEffects: ['Severe headache (drink water)', 'Insomnia', 'Appetite suppression', 'Anxiety', 'Rare: SJS skin reaction (serious)', 'Illegal without Rx (UK)'],
+    sideClass: ['warn', 'danger', 'warn', 'warn', 'danger', 'danger'],
+  },
+  {
+    id: 'armodafinil',
+    name: 'Armodafinil',
+    aka: 'Nuvigil — cleaner modafinil',
+    badge: 'Rx only', badgeClass: 'badge-red',
+    tier: 'rx', tierLabel: 'Prescription-only',
+    effects: { Focus: 88, Memory: 68, Energy: 92, Mood: 68 },
+    mechanism: "R-enantiomer of modafinil. Longer lasting, smoother profile, less crash. 150mg ≈ 200mg modafinil but with cleaner arc. Fewer dopamine side effects.",
+    dosage: "75–150mg in the morning. Even longer half-life than modafinil — 15+ hours.",
+    onset: '45–90 min', duration: '15+ hr', legal: 'Rx only (UK)', dependency: 'Low–moderate',
+    bestFor: 'Smoother all-day focus',
+    sideEffects: ['Similar to modafinil but milder', 'Headache', 'Nausea', 'Insomnia'],
+    sideClass: ['', 'warn', 'warn', 'danger'],
+  },
+  {
+    id: 'ritalin',
+    name: 'Methylphenidate (Ritalin)',
+    aka: 'ADHD medication',
+    badge: 'Class B', badgeClass: 'badge-red',
+    tier: 'rx', tierLabel: 'Prescription-only / Controlled',
+    effects: { Focus: 95, Memory: 80, Energy: 94, Mood: 72 },
+    mechanism: "Blocks dopamine and norepinephrine reuptake. Dramatic focus increase. Prescribed for ADHD. Class B in UK — possession without prescription is a criminal offence.",
+    dosage: "Prescribed only. 5–20mg. Class B controlled substance — illegal to possess without Rx in UK.",
+    onset: '20–40 min', duration: '4–6 hr', legal: 'Class B — Rx only', dependency: 'High',
+    bestFor: 'ADHD treatment (prescribed)',
+    sideEffects: ['High addiction potential', 'Cardiovascular strain', 'Anxiety / paranoia', 'Hard crash', 'Appetite suppression', 'Psychosis at high doses', 'Criminal to possess without Rx'],
+    sideClass: ['danger', 'danger', 'warn', 'danger', 'warn', 'danger', 'danger'],
+  },
+  {
+    id: 'semax',
+    name: 'Semax / Selank',
+    aka: 'Russian peptide nootropics',
+    badge: 'Experimental', badgeClass: 'badge-amber',
+    tier: 'black', tierLabel: 'Experimental / Unscheduled',
+    effects: { Focus: 82, Memory: 85, Energy: 70, Mood: 82 },
+    mechanism: "ACTH-derived peptides that strongly upregulate BDNF. Developed by Russian military and space program. Intranasal delivery. Selank additionally has anxiolytic properties. Very limited Western trial data.",
+    dosage: "Semax: 200–900mcg intranasal. Sourced from grey-market peptide labs. Zero long-term safety data.",
+    onset: '10–30 min', duration: '4–8 hr', legal: 'Unscheduled (UK)', dependency: 'Unknown',
+    bestFor: 'BDNF + anxiety reduction',
+    sideEffects: ['Unknown long-term effects', 'Nasal irritation', 'Overstimulation', 'Unregulated supply quality'],
+    sideClass: ['danger', '', 'warn', 'danger'],
+  },
+  {
+    id: 'psilocybin',
+    name: 'Microdosed Psilocybin',
+    aka: 'Magic mushrooms (sub-perceptual)',
+    badge: 'Class A — Illegal', badgeClass: 'badge-red',
+    tier: 'black', tierLabel: 'Controlled / Illegal (UK)',
+    effects: { Focus: 68, Memory: 62, Energy: 55, Mood: 92 },
+    mechanism: "Serotonin 5-HT2A agonist. At sub-perceptual doses (0.1–0.3g), increases neuroplasticity, creativity, and emotional fluency. Active clinical trials at Imperial College London and Johns Hopkins.",
+    dosage: "Class A drug in UK — illegal to possess. Research use only. Protocol: 0.1–0.3g every 3rd day.",
+    onset: '30–60 min', duration: '4–6 hr', legal: 'Class A — Illegal', dependency: 'None (physical)',
+    bestFor: 'Creativity + mood (research)',
+    sideEffects: ['Class A — criminal offence in UK', 'Anxiety', 'Perceptual distortion if over-threshold', 'Emotional dysregulation', 'Unknown long-term'],
+    sideClass: ['danger', 'warn', 'danger', 'warn', 'danger'],
+  },
+  {
+    id: 'ashwagandha',
+    name: 'Ashwagandha',
+    aka: 'Withania somnifera',
+    badge: 'Adaptogen', badgeClass: 'badge-green',
+    tier: 'otc', tierLabel: 'Freely available',
+    effects: { Focus: 52, Memory: 48, Energy: 45, Mood: 80 },
+    mechanism: "Reduces cortisol and stress hormones significantly. Adaptogen that improves stress resilience over time. Indirect cognitive benefit through reduced anxiety and better sleep quality.",
+    dosage: "300–600mg KSM-66 extract daily. Best taken at night. Effects in 4–8 weeks.",
+    onset: '2–4 weeks', duration: 'Chronic', legal: '✓ Legal', dependency: 'None',
+    bestFor: 'Stress + sleep quality',
+    sideEffects: ['Drowsiness (take at night)', 'Digestive upset', 'Not for thyroid conditions'],
+    sideClass: ['', '', 'warn'],
+  },
+];
+
+const TIER_META = {
+  otc: { label: 'Freely available (UK)', pillClass: 'badge-green', color: 'var(--green)' },
+  semi: { label: 'Grey market', pillClass: 'badge-amber', color: 'var(--amber)' },
+  rx: { label: 'Prescription-only (Rx)', pillClass: 'badge-red', color: 'var(--red)' },
+  black: { label: 'Controlled / Experimental', pillClass: 'badge-red', color: 'var(--red)' },
+};
+
+const EFFECT_COLORS = {
+  Focus: '#7c6af5',
+  Memory: '#2dd4a0',
+  Energy: '#f5a623',
+  Mood: '#f5606a',
+};
+
+let stack = new Set();
+let openCards = new Set();
+
+// ── RENDER COMPOUNDS ──
+function renderCompounds() {
+  const tiers = ['otc','semi','rx','black'];
+  const container = document.getElementById('compound-list');
+  container.innerHTML = '';
+
+  tiers.forEach(tier => {
+    const items = COMPOUNDS.filter(c => c.tier === tier);
+    if (!items.length) return;
+    const meta = TIER_META[tier];
+
+    const tierDiv = document.createElement('div');
+    tierDiv.className = 'tier-row fade-up';
+    tierDiv.innerHTML = `
+      <div class="tier-header">
+        <span class="tier-pill ${meta.pillClass}">${meta.label}</span>
+        <div class="tier-line"></div>
+      </div>
+      <div class="compound-grid" id="grid-${tier}"></div>
+    `;
+    container.appendChild(tierDiv);
+
+    const grid = tierDiv.querySelector(`#grid-${tier}`);
+    items.forEach(c => grid.appendChild(makeCard(c)));
+  });
+}
+
+function makeCard(c) {
+  const div = document.createElement('div');
+  div.className = 'compound-card' + (stack.has(c.id) ? ' selected' : '');
+  div.id = `card-${c.id}`;
+  div.innerHTML = `
+    <div class="card-top">
+      <div>
+        <div class="card-name">${c.name}</div>
+        <div class="card-aka">${c.aka}</div>
+      </div>
+      <span class="badge ${c.badgeClass}">${c.badge}</span>
+    </div>
+    <div class="effect-bars">
+      ${Object.entries(c.effects).map(([k,v]) => `
+        <div class="ebar">
+          <span class="ebar-label">${k}</span>
+          <div class="ebar-track"><div class="ebar-fill" style="width:${v}%;background:${EFFECT_COLORS[k]};"></div></div>
+          <span class="ebar-val">${v}</span>
+        </div>
+      `).join('')}
+    </div>
+    <div class="card-toggle" onclick="toggleDetail('${c.id}')">
+      <span>Details, dosage & side effects</span>
+      <span id="toggle-icon-${c.id}">▾</span>
+    </div>
+    <div class="card-detail" id="detail-${c.id}">
+      <div class="detail-row">
+        <div class="detail-key">Mechanism</div>
+        <div class="detail-val">${c.mechanism}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">Dosage</div>
+        <div class="detail-val">${c.dosage}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">Side effects</div>
+        <div class="tag-list">
+          ${c.sideEffects.map((s,i) => `<span class="tag ${c.sideClass[i]}">${s}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+    <button class="add-btn ${stack.has(c.id) ? 'added' : ''}" id="addbtn-${c.id}" onclick="toggleStack('${c.id}')">
+      ${stack.has(c.id) ? '✓ In stack' : '+ Add to stack'}
+    </button>
+  `;
+  return div;
+}
+
+function toggleDetail(id) {
+  const detail = document.getElementById(`detail-${id}`);
+  const icon = document.getElementById(`toggle-icon-${id}`);
+  const open = detail.classList.toggle('open');
+  icon.textContent = open ? '▴' : '▾';
+}
+
+// ── STACK LOGIC ──
+function toggleStack(id) {
+  if (stack.has(id)) {
+    stack.delete(id);
+  } else {
+    stack.add(id);
+  }
+  updateCardState(id);
+  renderStack();
+}
+
+function updateCardState(id) {
+  const card = document.getElementById(`card-${id}`);
+  const btn = document.getElementById(`addbtn-${id}`);
+  if (!card || !btn) return;
+  if (stack.has(id)) {
+    card.classList.add('selected');
+    btn.classList.add('added');
+    btn.textContent = '✓ In stack';
+  } else {
+    card.classList.remove('selected');
+    btn.classList.remove('added');
+    btn.textContent = '+ Add to stack';
+  }
+}
+
+function clearStack() {
+  const ids = [...stack];
+  stack.clear();
+  ids.forEach(id => updateCardState(id));
+  renderStack();
+}
+
+function renderStack() {
+  const items = COMPOUNDS.filter(c => stack.has(c.id));
+  const chipsEl = document.getElementById('stack-chips');
+  const emptyEl = document.getElementById('stack-empty');
+  const analysisEl = document.getElementById('stack-analysis');
+  const countEl = document.getElementById('stack-count');
+
+  countEl.textContent = `(${items.length} compound${items.length !== 1 ? 's' : ''})`;
+
+  if (items.length === 0) {
+    emptyEl.style.display = 'block';
+    chipsEl.innerHTML = '';
+    analysisEl.classList.remove('show');
+    analysisEl.innerHTML = '';
+    return;
+  }
+
+  emptyEl.style.display = 'none';
+
+  // Chips
+  chipsEl.innerHTML = items.map(c => `
+    <div class="chip">
+      <span>${c.name}</span>
+      <button class="chip-remove" onclick="toggleStack('${c.id}')">✕</button>
+    </div>
+  `).join('');
+
+  // Analysis
+  const avgEffects = {};
+  Object.keys(EFFECT_COLORS).forEach(k => {
+    avgEffects[k] = Math.round(items.reduce((s,c) => s + (c.effects[k]||0), 0) / items.length);
+  });
+
+  // Collect all risks
+  const allRisks = [];
+  items.forEach(c => {
+    c.sideEffects.forEach((s,i) => allRisks.push({ text: s, cls: c.sideClass[i] }));
+  });
+
+  // Synergies
+  const syns = getSynergies(items);
+
+  // Risk level
+  const hasDanger = allRisks.some(r => r.cls === 'danger');
+  const hasWarn = allRisks.some(r => r.cls === 'warn');
+  const riskLevel = hasDanger ? { label: 'High risk', color: 'var(--red)' } : hasWarn ? { label: 'Moderate risk', color: 'var(--amber)' } : { label: 'Low risk', color: 'var(--green)' };
+
+  analysisEl.innerHTML = `
+    <div style="border-top:1px solid var(--border);padding-top:20px;margin-top:4px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
+        <div style="font-size:13px;font-weight:500;color:var(--text);">Stack analysis</div>
+        <span class="badge" style="background:${riskLevel.color}18;color:${riskLevel.color};border-color:${riskLevel.color}40;">${riskLevel.label}</span>
+      </div>
+      <div class="analysis-grid">
+        ${Object.entries(avgEffects).map(([k,v]) => `
+          <div class="analysis-card">
+            <div class="analysis-card-label">${k}</div>
+            <div class="analysis-bar-wrap"><div class="analysis-bar" style="width:${v}%;background:${EFFECT_COLORS[k]};"></div></div>
+            <div class="analysis-card-val" style="color:${EFFECT_COLORS[k]};">${v}<span style="font-size:14px;color:var(--text3);">/100</span></div>
+          </div>
+        `).join('')}
+      </div>
+
+      ${syns.length ? `
+        <div style="margin-bottom:16px;">
+          <div class="risk-title">Synergies & interactions</div>
+          ${syns.map(s => `
+            <div class="synergy-box">
+              <div class="synergy-title">
+                <div class="synergy-dot" style="background:${s.type === 'positive' ? 'var(--green)' : 'var(--amber)'};"></div>
+                ${s.title}
+              </div>
+              <div class="synergy-body">${s.body}</div>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      <div class="stack-risks">
+        <div class="risk-title">Combined side effects & warnings</div>
+        <div class="risk-list">
+          ${[...new Map(allRisks.map(r => [r.text, r])).values()].map(r => `<span class="tag ${r.cls}">${r.text}</span>`).join('')}
+        </div>
+      </div>
+
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:4px;">
+        <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:6px;">Compounds in this stack</div>
+        <div style="font-size:12px;color:var(--text3);line-height:1.8;">
+          ${items.map(c => `<span style="color:var(--text2);">${c.name}</span> — ${c.dosage}`).join('<br>')}
+        </div>
+      </div>
+    </div>
+  `;
+
+  analysisEl.classList.add('show');
+}
+
+function getSynergies(items) {
+  const ids = items.map(c => c.id);
+  const syns = [];
+
+  if (ids.includes('modafinil') && ids.includes('alpha-gpc')) {
+    syns.push({ type: 'positive', title: 'Modafinil + Alpha-GPC — the classic power stack', body: 'Modafinil drives prolonged wakefulness; Alpha-GPC provides the acetylcholine supply for memory encoding during that extended focus window. Prevents the headache that modafinil can cause alone. This is the most researched real-world stack.' });
+  }
+  if (ids.includes('modafinil') && ids.includes('ltheanine-caffeine')) {
+    syns.push({ type: 'positive', title: 'Modafinil + L-Theanine — edge smoothing', body: "L-Theanine blunts modafinil's occasional anxiety and restlessness. Reduces the jittery quality some people experience, making the focus feel cleaner and more sustainable." });
+  }
+  if ((ids.includes('piracetam') || ids.includes('noopept')) && !ids.includes('alpha-gpc')) {
+    syns.push({ type: 'warn', title: '⚠ Racetam/Noopept without choline source', body: 'You have a racetam or Noopept in your stack but no choline source (Alpha-GPC). Racetams rapidly deplete acetylcholine — this will almost certainly cause a tension headache. Add Alpha-GPC or CDP-Choline.' });
+  }
+  if (ids.includes('lions-mane') && ids.includes('bacopa')) {
+    syns.push({ type: 'positive', title: "Lion's Mane + Bacopa — neuroplasticity protocol", body: 'Both compounds increase BDNF/NGF and support memory consolidation through different pathways. Long-term stack (8–12 weeks) for genuinely building cognitive baseline rather than acute stimulation.' });
+  }
+  if (ids.includes('phenylpiracetam') && ids.includes('modafinil')) {
+    syns.push({ type: 'warn', title: '⚠ Phenylpiracetam + Modafinil — high stimulant load', body: 'Both are potent stimulants. Combining them significantly increases cardiovascular load, anxiety risk, and insomnia probability. Not recommended. If you use modafinil, phenylpiracetam is redundant.' });
+  }
+  if (ids.includes('ashwagandha') && ids.includes('modafinil')) {
+    syns.push({ type: 'positive', title: 'Ashwagandha + Modafinil — cortisol management', body: "Modafinil can elevate stress hormones with prolonged use. Ashwagandha's cortisol-lowering effect helps counteract this, reducing the anxious edge and improving sleep quality on off-days." });
+  }
+  if (ids.includes('creatine') && ids.includes('ltheanine-caffeine')) {
+    syns.push({ type: 'positive', title: 'Creatine + L-Theanine/Caffeine — the safe daily trio', body: 'Combined ATP replenishment (creatine) with clean stimulation (caffeine + L-theanine). This trio is the safest and most consistent everyday stack with good evidence base and virtually no serious risks.' });
+  }
+  return syns;
+}
+
+// ── COMPARE TABLE ──
+function renderCompareTable() {
+  const tbody = document.getElementById('compare-table');
+  COMPOUNDS.forEach(c => {
+    const legalColor = c.legal.includes('Class A') ? 'dot-red' : c.legal.includes('Class B') || c.legal.includes('Rx') ? 'dot-amber' : 'dot-green';
+    const depColor = c.dependency === 'None' ? 'dot-green' : c.dependency === 'High' ? 'dot-red' : 'dot-amber';
+    tbody.innerHTML += `
+      <tr>
+        <td>${c.name}</td>
+        <td>${c.onset}</td>
+        <td>${c.duration}</td>
+        <td class="${legalColor}">${c.legal}</td>
+        <td class="${depColor}">${c.dependency}</td>
+        <td>${c.bestFor}</td>
+      </tr>
+    `;
+  });
+}
+
+// ── SCROLL ANIMATIONS ──
+function initScrollAnim() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+}
+
+// ── PREMADE STACKS ──
+const PRESET_LEVELS = [
+  {
+    level: 1,
+    name: 'The Gentle Foundation',
+    tagline: 'All-natural, zero risk. A slow-burn baseline protocol for long-term brain health, stress resilience, and better sleep. No stimulants, no dependency, no side effects to worry about.',
+    compounds: ['lions-mane', 'ashwagandha', 'creatine'],
+    risk: 'Minimal risk',
+    riskColor: '#2dd4a0',
+    stepColor: '#2dd4a0',
+    purpose: 'Long-term neuroplasticity and stress resilience',
+    frequency: 'Daily, indefinitely',
+    warnings: [
+      { bullet: '✓', text: 'Fully legal everywhere, no prescription required' },
+      { bullet: '✓', text: 'No cycling needed — safe for continuous daily use' },
+      { bullet: '⚠', text: "Lion's Mane takes 4–8 weeks to build up — don't expect immediate effects" },
+      { bullet: '⚠', text: 'Ashwagandha should be taken at night due to mild sedative properties' },
+    ]
+  },
+  {
+    level: 2,
+    name: 'The Daily Driver',
+    tagline: 'Clean, productive energy for everyday use. The responsible professional stack — moderate stimulation, solid memory support, and anxiety management. Fully legal everywhere.',
+    compounds: ['ltheanine-caffeine', 'alpha-gpc', 'bacopa', 'creatine'],
+    risk: 'Low risk',
+    riskColor: '#5ab4f5',
+    stepColor: '#5ab4f5',
+    purpose: 'Consistent daily performance with no crash',
+    frequency: 'Daily (cycle Bacopa — continuous use fine for the rest)',
+    warnings: [
+      { bullet: '✓', text: 'Fully legal everywhere, no prescription required' },
+      { bullet: '⚠', text: 'Caffeine dependency builds — consider 1–2 day breaks per week' },
+      { bullet: '⚠', text: 'Bacopa takes 8–12 weeks for full memory benefit — patience required' },
+      { bullet: '⚠', text: 'Avoid caffeine after 2pm to protect sleep quality' },
+    ]
+  },
+  {
+    level: 3,
+    name: 'The Serious Stack',
+    tagline: 'Stepping into real nootropic territory. Potent BDNF upregulation, strong working memory, and anxiety-managed focus. Grey market in some countries but unscheduled in the UK.',
+    compounds: ['noopept', 'alpha-gpc', 'lions-mane', 'ltheanine-caffeine', 'ashwagandha'],
+    risk: 'Moderate risk',
+    riskColor: '#f5a623',
+    stepColor: '#f5a623',
+    purpose: 'Serious cognitive enhancement with manageable risk',
+    frequency: 'Noopept: 56 days on / 4 weeks off. Rest: daily.',
+    warnings: [
+      { bullet: '✓', text: 'Unscheduled in the UK — legal to buy and possess' },
+      { bullet: '⚠', text: 'Always include Alpha-GPC — Noopept depletes acetylcholine rapidly' },
+      { bullet: '⚠', text: 'Noopept requires strict cycling — do not use continuously' },
+      { bullet: '⚠', text: 'Overstimulation possible at high Noopept doses — start at 10mg' },
+      { bullet: '✗', text: 'Grey market / restricted in USA, Canada, Australia — check your local laws' },
+    ]
+  },
+  {
+    level: 4,
+    name: 'The High Performer',
+    tagline: 'The real-world Limitless stack. Modafinil-anchored 12–15 hour focus sessions with choline, neuroplasticity, and cortisol support built in. What high-output professionals actually use.',
+    compounds: ['modafinil', 'alpha-gpc', 'ltheanine-caffeine', 'bacopa', 'ashwagandha'],
+    risk: 'Elevated risk',
+    riskColor: '#f5606a',
+    stepColor: '#f5606a',
+    purpose: '12–15 hour deep work sessions, exam prep, high-stakes output',
+    frequency: 'Modafinil: 3–4× per week max. Rest: daily.',
+    warnings: [
+      { bullet: '✗', text: 'Modafinil is prescription-only in the UK — illegal to possess without Rx' },
+      { bullet: '⚠', text: 'Do NOT take modafinil after midday — your sleep will be severely disrupted' },
+      { bullet: '⚠', text: 'Memory consolidates during sleep — good sleep is required for knowledge retention' },
+      { bullet: '⚠', text: 'Stay very well hydrated — modafinil causes dehydration headaches' },
+      { bullet: '⚠', text: 'Rare but serious: Steven-Johnson Syndrome skin reaction — discontinue at any rash' },
+    ]
+  },
+  {
+    level: 5,
+    name: 'The Extreme Protocol',
+    tagline: 'Maximum cognitive output. Not for regular use. Combining Rx, grey-market, and experimental peptide compounds. The hardest real-world hit you can construct. Significant risk profile — research everything before considering.',
+    compounds: ['modafinil', 'phenylpiracetam', 'alpha-gpc', 'noopept', 'semax', 'ashwagandha'],
+    risk: 'High risk',
+    riskColor: '#f5606a',
+    stepColor: '#cc3340',
+    purpose: 'Absolute peak cognitive output — occasional use only',
+    frequency: 'Modafinil: 1–2× per week. Phenylpiracetam: max 2× per week. Semax: cycled.',
+    warnings: [
+      { bullet: '✗', text: 'Multiple compounds here are prescription-only or controlled — illegal without Rx in the UK' },
+      { bullet: '✗', text: 'Phenylpiracetam is WADA banned — do not use if you compete in any sport' },
+      { bullet: '✗', text: 'Modafinil + Phenylpiracetam = very high stimulant load — cardiovascular risk increases' },
+      { bullet: '✗', text: 'Semax is sourced from unregulated grey-market labs — purity is not guaranteed' },
+      { bullet: '⚠', text: 'Tolerance builds extremely fast — this protocol cannot be used more than 1–2× per week' },
+      { bullet: '⚠', text: 'Not recommended for anyone without prior experience with individual compounds first' },
+    ]
+  }
+];
+
+const EFFECT_KEYS = ['Focus','Memory','Energy','Mood'];
+
+function getPresetEffects(compoundIds) {
+  const items = COMPOUNDS.filter(c => compoundIds.includes(c.id));
+  const result = {};
+  EFFECT_KEYS.forEach(k => {
+    result[k] = Math.round(items.reduce((s,c) => s + (c.effects[k]||0), 0) / items.length);
+  });
+  return result;
+}
+
+function renderDial(activeLevel) {
+  const steps = document.getElementById('dial-steps');
+  const fill = document.getElementById('dial-fill');
+  const pct = ((activeLevel - 1) / 4) * 100;
+  const preset = PRESET_LEVELS[activeLevel - 1];
+
+  fill.style.width = pct + '%';
+  fill.style.background = `linear-gradient(90deg, #2dd4a0, ${preset.stepColor})`;
+
+  steps.innerHTML = PRESET_LEVELS.map((p, i) => `
+    <div class="dial-step ${activeLevel >= p.level ? 'active' : ''}"
+         style="--step-color: ${p.stepColor};"
+         onclick="selectPreset(${p.level})">
+      <span class="dial-step-label">L${p.level}</span>
+    </div>
+  `).join('');
+
+  renderPresetPanel(preset);
+}
+
+function renderPresetPanel(preset) {
+  const panel = document.getElementById('preset-panel');
+  const effects = getPresetEffects(preset.compounds);
+  const compounds = COMPOUNDS.filter(c => preset.compounds.includes(c.id));
+
+  const chipDotColor = (c) => {
+    if (c.tier === 'otc') return '#2dd4a0';
+    if (c.tier === 'semi') return '#f5a623';
+    if (c.tier === 'rx') return '#f5606a';
+    return '#cc3340';
+  };
+
+  panel.style.borderColor = preset.riskColor + '40';
+
+  panel.innerHTML = `
+    <div class="preset-header">
+      <div>
+        <div class="preset-level-num">LEVEL ${preset.level} / 5</div>
+        <div class="preset-name" style="color:${preset.stepColor};">${preset.name}</div>
+        <div class="preset-tagline">${preset.tagline}</div>
+      </div>
+      <div class="preset-meta">
+        <span class="preset-risk-badge" style="background:${preset.riskColor}15;color:${preset.riskColor};border:1px solid ${preset.riskColor}30;">${preset.risk}</span>
+        <button class="preset-load-btn" style="background:${preset.stepColor};color:#0a0a0f;" onclick="loadPresetIntoBuilder(${preset.level})">
+          Load into Stack Builder →
+        </button>
+      </div>
+    </div>
+    <div class="preset-body">
+      <div class="preset-compounds-title">Compounds in this stack</div>
+      <div class="preset-chips">
+        ${compounds.map(c => `
+          <div class="preset-chip">
+            <div class="preset-chip-dot" style="background:${chipDotColor(c)};"></div>
+            ${c.name}
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="preset-compounds-title" style="margin-bottom:10px;">Combined effect profile</div>
+      <div class="preset-effects-grid" style="margin-bottom:20px;">
+        ${EFFECT_KEYS.map(k => `
+          <div class="preset-effect-card">
+            <div class="pec-label">${k}</div>
+            <div class="pec-bar-bg"><div class="pec-bar-fill" style="width:${effects[k]}%;background:${EFFECT_COLORS[k]};"></div></div>
+            <div class="pec-val" style="color:${EFFECT_COLORS[k]};">${effects[k]}<span style="font-size:12px;color:var(--text3);">/100</span></div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:20px;">
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+          <div class="preset-compounds-title" style="margin-bottom:6px;">Purpose</div>
+          <div style="font-size:13px;color:var(--text2);">${preset.purpose}</div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+          <div class="preset-compounds-title" style="margin-bottom:6px;">Dosing frequency</div>
+          <div style="font-size:13px;color:var(--text2);">${preset.frequency}</div>
+        </div>
+      </div>
+
+      <div class="preset-risks-title">Warnings & legal status</div>
+      <div class="preset-warnings">
+        ${preset.warnings.map(w => `
+          <div class="pw-row">
+            <span class="pw-bullet" style="color:${w.bullet === '✓' ? 'var(--green)' : w.bullet === '✗' ? 'var(--red)' : 'var(--amber)'};">${w.bullet}</span>
+            <span>${w.text}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function selectPreset(level) {
+  renderDial(level);
+  document.getElementById('preset-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function loadPresetIntoBuilder(level) {
+  const preset = PRESET_LEVELS[level - 1];
+  // Clear current stack
+  const oldIds = [...stack];
+  stack.clear();
+  oldIds.forEach(id => updateCardState(id));
+
+  // Add preset compounds
+  preset.compounds.forEach(id => {
+    stack.add(id);
+    updateCardState(id);
+  });
+  renderStack();
+
+  // Scroll to stack builder
+  document.getElementById('stack-builder-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── INIT ──
+renderCompounds();
+renderCompareTable();
+renderDial(1);
+initScrollAnim();
+</script>
+</body>
+</html>
