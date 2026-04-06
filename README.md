@@ -4,4 +4,4 @@ See risk profiles.
 Effects of various nootropics.
 This is not medical advice.
 Educational purposes only!!!
-;)
+
